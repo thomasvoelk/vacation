@@ -1,8 +1,8 @@
 package org.voelk.vacation
 
 
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
 import kotlin.test.assertFailsWith
@@ -13,17 +13,17 @@ class VacationTest {
 
     @Test
     fun sameDay_vacationIsOneDay() {
-        MatcherAssert.assertThat(Vacation(today, today).durationInDays(), CoreMatchers.`is`(1L))
+        assertThat(Vacation(today, today).durationInDays(), `is`(1L))
     }
 
     @Test
     fun nextDay_vacationIsTwoDays() {
-        MatcherAssert.assertThat(Vacation(today, today.plusDays(1)).durationInDays(), CoreMatchers.`is`(2L))
+        assertThat(Vacation(today, today.plusDays(1)).durationInDays(), `is`(2L))
     }
 
     @Test
     fun maxOf_1000_days_is_ok() {
-        MatcherAssert.assertThat(Vacation(today, today.plusDays(999)).durationInDays(), CoreMatchers.`is`(1000L))
+        assertThat(Vacation(today, today.plusDays(999)).durationInDays(), `is`(1000L))
     }
 
     @Test()
