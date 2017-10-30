@@ -13,17 +13,17 @@ class VacationTest {
 
     @Test
     fun sameDay_vacationIsOneDay() {
-        assertThat(Vacation(today, today).durationInDays(), `is`(1L))
+        assertThat(Vacation(today, today).durationInDays(), `is`(1))
     }
 
     @Test
     fun nextDay_vacationIsTwoDays() {
-        assertThat(Vacation(today, today.plusDays(1)).durationInDays(), `is`(2L))
+        assertThat(Vacation(today, today.plusDays(1)).durationInDays(), `is`(2))
     }
 
     @Test
     fun maxOf_1000_days_is_ok() {
-        assertThat(Vacation(today, today.plusDays(999)).durationInDays(), `is`(1000L))
+        assertThat(Vacation(today, today.plusDays(999)).durationInDays(), `is`(1000))
     }
 
     @Test()
