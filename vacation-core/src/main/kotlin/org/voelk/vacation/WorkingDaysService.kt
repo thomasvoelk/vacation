@@ -5,7 +5,7 @@ import java.time.LocalDate
 
 @Service
 class WorkingDaysService {
-    fun workingDaysIn(start: LocalDate, end: LocalDate): Int {
+    fun workingDaysIn(start: LocalDate, end: LocalDate): Double {
         return Vacation(start, end).durationInDays()
     }
 }

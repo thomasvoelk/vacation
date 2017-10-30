@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 
 
 @SpringBootApplication
-open class Application
+open class VacationApplication
 
 fun main(args: Array<String>) {
-    SpringApplication.run(Application::class.java, *args)
+    SpringApplication.run(VacationApplication::class.java, *args)
 }

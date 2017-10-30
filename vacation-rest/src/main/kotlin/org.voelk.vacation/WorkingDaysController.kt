@@ -8,8 +8,8 @@ import java.time.LocalDate
 @RestController
 class WorkingDaysController(private val workingDaysService: WorkingDaysService) {
 
-    @GetMapping("/working-days")
-    fun workingDays(@RequestParam("start") start:String, @RequestParam("end") end:String): Int {
+    @GetMapping("/days/working")
+    fun workingDays(@RequestParam("start") start:String, @RequestParam("end") end:String): Double {
         return workingDaysService.workingDaysIn(LocalDate.parse(start), LocalDate.parse(end))
     }
 }

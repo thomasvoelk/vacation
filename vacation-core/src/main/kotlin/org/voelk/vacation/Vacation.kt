@@ -13,7 +13,7 @@ class Vacation(private val start: LocalDate, private val end: LocalDate) {
             throw IllegalArgumentException("Maximum allowed period is 1000 days. Your period is $durationInDays days")
     }
 
-    fun durationInDays(): Int {
-        return ChronoUnit.DAYS.between(start, end.plusDays(1)).toInt()
+    fun durationInDays(): Double {
+        return ChronoUnit.DAYS.between(start, end.plusDays(1)).toDouble()
     }
 }
