@@ -1,8 +1,10 @@
 package org.voelk.vacation.domain
 
+import org.springframework.stereotype.Component
 import java.time.DayOfWeek
 import java.time.LocalDate
 
+@Component
 internal class Weekends {
     fun between(start: LocalDate, end: LocalDate): Set<LocalDate> {
         val days = mutableSetOf<LocalDate>()

@@ -6,12 +6,12 @@ import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
 @Service
-internal class WorkingDaysService : WorkingDaysCalculator {
+internal class WorkingDaysService(private val days: Days, private val holidays: Holidays, private val weekends: Weekends) : WorkingDaysCalculator {
     override fun workingDaysBetween(start: LocalDate, end: LocalDate, workingPlace: WorkingPlace): Double {
         assertValid(end, start)
 
-        val nonWorkingDays = setOf(Holidays().between(start, end, workingPlace.location), Weekends().between(start, end))
-        return (Days().between(start, end).size - nonWorkingDays.size).toDouble()
+        val nonWorkingDays = setOf(holidays.between(start, end, workingPlace.location), weekends.between(start, end))
+        return (days.between(start, end).size - nonWorkingDays.size).toDouble()
     }
 
     private fun assertValid(end: LocalDate, start: LocalDate) {
