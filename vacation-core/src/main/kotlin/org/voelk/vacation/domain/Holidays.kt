@@ -1,11 +1,11 @@
-package org.voelk.vacation
+package org.voelk.vacation.domain
 
 import de.jollyday.HolidayManager
 import java.time.LocalDate
 import java.util.stream.Collectors
 
-class Holidays(val start: LocalDate, val end: LocalDate, val location: String) {
-    fun days(): Set<LocalDate> {
+internal class Holidays {
+    fun between(start: LocalDate, end: LocalDate, location: String): Set<LocalDate> {
         return HolidayManager.getInstance().getHolidays(start, end, location).stream().map { h -> h.date }.collect(Collectors.toSet())
     }
 
