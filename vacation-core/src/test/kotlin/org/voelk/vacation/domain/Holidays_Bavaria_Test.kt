@@ -8,14 +8,14 @@ import java.time.*
 class Holidays_Bavaria_Test {
     @Test
     fun noHolidays() {
-        val moday_noHoliday = LocalDate.parse("2017-10-23")
+        val monday_noHoliday = LocalDate.parse("2017-10-23")
         val sunday_noHoliday = LocalDate.parse("2017-10-29")
         //monday only
-        assertThat(Holidays().between(start = moday_noHoliday, end = moday_noHoliday, location = "by"), `is`(emptySet()))
+        assertThat(Holidays().between(start = monday_noHoliday, end = monday_noHoliday, location = "by"), `is`(emptySet()))
         //sunday only
         assertThat(Holidays().between(start = sunday_noHoliday, end = sunday_noHoliday, location = "by"), `is`(emptySet()))
-        //moday to sunday
-        assertThat(Holidays().between(start = moday_noHoliday, end = sunday_noHoliday, location = "by"), `is`(emptySet()))
+        //monday to sunday
+        assertThat(Holidays().between(start = monday_noHoliday, end = sunday_noHoliday, location = "by"), `is`(emptySet()))
     }
 
 
