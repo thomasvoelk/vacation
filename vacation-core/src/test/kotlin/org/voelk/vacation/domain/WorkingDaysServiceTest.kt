@@ -56,12 +56,10 @@ class WorkingDaysServiceTest {
         })
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun <T> any(): T {
         Mockito.any<T>()
-        return uninitialized()
+        return null as T
     }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun <T> uninitialized(): T = null as T
 
 }
