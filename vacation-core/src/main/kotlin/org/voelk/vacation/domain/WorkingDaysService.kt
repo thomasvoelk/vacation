@@ -13,7 +13,8 @@ internal class WorkingDaysService(private val days: Days, private val holidays: 
 
         return (days.between(start, end)
                 - holidays.between(start, end, workingPlace.location)
-                - weekends.between(start, end)).stream()    }
+                - weekends.between(start, end)).stream()
+    }
 
     private fun assertValid(end: LocalDate, start: LocalDate) {
         if (end.isBefore(start))

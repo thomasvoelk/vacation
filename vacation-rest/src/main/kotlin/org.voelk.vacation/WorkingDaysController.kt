@@ -16,7 +16,7 @@ class WorkingDaysController(private val workingDaysCalculator: WorkingDaysCalcul
         return convert(workingDaysCalculator.workingDaysBetween(LocalDate.parse(start), LocalDate.parse(end), workingPlace))
     }
 
-    private fun convert(days : Stream<LocalDate>) : WorkingDays {
+    private fun convert(days: Stream<LocalDate>): WorkingDays {
         val dates = days.map { d -> DateTimeFormatter.ISO_LOCAL_DATE.format(d) }.collect(Collectors.toSet()).sorted()
         return WorkingDays(dates, dates.size.toDouble())
     }
