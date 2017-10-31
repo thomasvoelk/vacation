@@ -1,9 +1,9 @@
 package org.voelk.vacation.domain
 
-import org.springframework.stereotype.Service
-import org.voelk.vacation.api.WorkingDaysCalculator
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
+import org.springframework.stereotype.*
+import org.voelk.vacation.api.*
+import java.time.*
+import java.time.temporal.*
 
 @Service
 internal class WorkingDaysService(private val days: Days, private val holidays: Holidays, private val weekends: Weekends) : WorkingDaysCalculator {

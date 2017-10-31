@@ -1,9 +1,9 @@
 package org.voelk.vacation.domain
 
-import de.jollyday.HolidayManager
-import org.springframework.stereotype.Component
-import java.time.LocalDate
-import java.util.stream.Collectors
+import de.jollyday.*
+import org.springframework.stereotype.*
+import java.time.*
+import java.util.stream.*
 
 @Component
 internal class Holidays {

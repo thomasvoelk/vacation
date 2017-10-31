@@ -1,10 +1,10 @@
 package org.voelk.vacation.domain
 
-import org.springframework.stereotype.Component
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
-import java.util.stream.Collectors
-import java.util.stream.Stream.iterate
+import org.springframework.stereotype.*
+import java.time.*
+import java.time.temporal.*
+import java.util.stream.*
+import java.util.stream.Stream.*
 
 @Component
 internal class Days {

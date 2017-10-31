@@ -1,7 +1,7 @@
 package org.voelk.vacation.api
 
-import org.voelk.vacation.domain.WorkingPlace
-import java.time.LocalDate
+import org.voelk.vacation.domain.*
+import java.time.*
 
 interface WorkingDaysCalculator {
     companion object {

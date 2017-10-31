@@ -1,14 +1,13 @@
 package org.voelk.vacation.domain
 
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.mockito.Mockito
+import org.hamcrest.CoreMatchers.*
+import org.hamcrest.MatcherAssert.*
+import org.junit.jupiter.api.*
+import org.mockito.*
 import org.mockito.Mockito.*
-import org.voelk.vacation.api.WorkingDaysCalculator
-import java.time.LocalDate
-import kotlin.test.assertFailsWith
+import org.voelk.vacation.api.*
+import java.time.*
+import kotlin.test.*
 
 class WorkingDaysServiceTest {
     private val workingPlace = WorkingPlace("by")

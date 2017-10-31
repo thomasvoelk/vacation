@@ -1,15 +1,17 @@
 package org.voelk.vacation
 
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.http.HttpStatus
-import org.springframework.test.context.junit.jupiter.SpringExtension
-import org.springframework.web.util.UriComponentsBuilder
+import org.hamcrest.CoreMatchers.*
+import org.hamcrest.MatcherAssert.*
+import org.junit.jupiter.api.*
+import org.junit.jupiter.api.extension.*
+import org.skyscreamer.jsonassert.*
+import org.springframework.beans.factory.annotation.*
+import org.springframework.boot.test.context.*
+import org.springframework.boot.test.web.client.*
+import org.springframework.http.*
+import org.springframework.test.context.junit.jupiter.*
+import org.springframework.web.util.*
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(classes = arrayOf(VacationApplication::class),
@@ -25,9 +27,9 @@ class WorkingDaysControllerTest {
                 .queryParam("start", "2017-01-01")
                 .queryParam("end", "2017-01-01")
                 .build().toUri()
-        val result = testRestTemplate.getForEntity(uri, Double::class.java)
+        val result = testRestTemplate.getForEntity(uri, String::class.java)
 
-        assertEquals(HttpStatus.OK, result?.statusCode)
-        assertEquals(0.0, result?.body)
+        assertThat(result.statusCode, `is`(HttpStatus.OK))
+        JSONAssert.assertEquals("{count:0.0}", result.body, false)
     }
 }

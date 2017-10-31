@@ -1,10 +1,10 @@
 package org.voelk.vacation.domain
 
 
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.jupiter.api.Test
-import java.time.LocalDate
+import org.hamcrest.CoreMatchers.*
+import org.hamcrest.MatcherAssert.*
+import org.junit.jupiter.api.*
+import java.time.*
 
 class DaysTest {
 
