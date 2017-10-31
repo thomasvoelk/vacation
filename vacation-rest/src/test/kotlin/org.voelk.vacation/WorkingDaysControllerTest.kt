@@ -30,6 +30,6 @@ class WorkingDaysControllerTest {
         val result = testRestTemplate.getForEntity(uri, String::class.java)
 
         assertThat(result.statusCode, `is`(HttpStatus.OK))
-        JSONAssert.assertEquals("{count:0.0}", result.body, false)
+        JSONAssert.assertEquals("{\"days\":[],\"count\":0.0}", result.body, false)
     }
 }

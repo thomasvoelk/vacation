@@ -7,15 +7,16 @@ import org.mockito.*
 import org.mockito.Mockito.*
 import org.voelk.vacation.api.*
 import java.time.*
+import java.util.stream.*
 import kotlin.test.*
 
 class WorkingDaysServiceTest {
     private val workingPlace = WorkingPlace("by")
     private val today = LocalDate.now()
-    private var days = mock(Days::class.java)
-    private var holidays = mock(Holidays::class.java)
-    private var weekends = mock(Weekends::class.java)
-    private val service = WorkingDaysService(days, holidays, weekends)
+    private val days = mock(Days::class.java)
+    private val holidays = mock(Holidays::class.java)
+    private val weekends = mock(Weekends::class.java)
+    private var service = WorkingDaysService(days, holidays, weekends)
 
     @BeforeEach
     fun setup() {
@@ -32,13 +33,13 @@ class WorkingDaysServiceTest {
         `when`(holidays.between(any(), any(), anyString())).thenReturn(setOf(tomorrow))
         `when`(weekends.between(any(), any())).thenReturn(setOf(dayAfterTomorrow))
 
-        assertThat(service.workingDaysBetween(today, dayAfterTomorrow, workingPlace), `is`(1.0))
+        assertStreamEquals(service.workingDaysBetween(today, dayAfterTomorrow, workingPlace), setOf(today).stream())
     }
 
     @Test
     fun maxOf_1000_days_is_ok() {
         val muchLater = today.plusDays(WorkingDaysCalculator.MAX_RANGE - 1L)
-        assertThat(service.workingDaysBetween(today, muchLater, workingPlace), `is`(0.0))
+        assertStreamEquals(service.workingDaysBetween(today, muchLater, workingPlace), emptySet<LocalDate>().stream())
     }
 
     @Test()
@@ -53,6 +54,14 @@ class WorkingDaysServiceTest {
         assertFailsWith(IllegalArgumentException::class, {
             service.workingDaysBetween(today, today.minusDays(1), workingPlace)
         })
+    }
+
+    private fun <T> assertStreamEquals(expected: Stream<T>, actual: Stream<T>) {
+        val iterator1 = expected.iterator()
+        val iterator2 = actual.iterator()
+        while (iterator1.hasNext() && iterator2.hasNext())
+            assertThat(iterator1.next(), `is`(iterator2.next()))
+        assertThat(!iterator1.hasNext(), `is`(!iterator2.hasNext()))
     }
 
     @Suppress("UNCHECKED_CAST")

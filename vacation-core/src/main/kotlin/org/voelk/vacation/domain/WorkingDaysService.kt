@@ -4,17 +4,16 @@ import org.springframework.stereotype.*
 import org.voelk.vacation.api.*
 import java.time.*
 import java.time.temporal.*
+import java.util.stream.*
 
 @Service
 internal class WorkingDaysService(private val days: Days, private val holidays: Holidays, private val weekends: Weekends) : WorkingDaysCalculator {
-    override fun workingDaysBetween(start: LocalDate, end: LocalDate, workingPlace: WorkingPlace): Double {
+    override fun workingDaysBetween(start: LocalDate, end: LocalDate, workingPlace: WorkingPlace): Stream<LocalDate> {
         assertValid(end, start)
 
         return (days.between(start, end)
                 - holidays.between(start, end, workingPlace.location)
-                - weekends.between(start, end))
-                .size.toDouble()
-    }
+                - weekends.between(start, end)).stream()    }
 
     private fun assertValid(end: LocalDate, start: LocalDate) {
         if (end.isBefore(start))

@@ -1,5 +1,4 @@
 package org.voelk.vacation
 
-class WorkingDays(val count: Double) {
-
+data class WorkingDays(val days: Collection<String>, val count: Double) {
 }
