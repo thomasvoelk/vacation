@@ -10,8 +10,10 @@ internal class WorkingDaysService(private val days: Days, private val holidays: 
     override fun workingDaysBetween(start: LocalDate, end: LocalDate, workingPlace: WorkingPlace): Double {
         assertValid(end, start)
 
-        val nonWorkingDays = setOf(holidays.between(start, end, workingPlace.location), weekends.between(start, end))
-        return (days.between(start, end).size - nonWorkingDays.size).toDouble()
+        return (days.between(start, end)
+                - holidays.between(start, end, workingPlace.location)
+                - weekends.between(start, end))
+                .size.toDouble()
     }
 
     private fun assertValid(end: LocalDate, start: LocalDate) {
